@@ -1,10 +1,10 @@
 export default async function PostsPage() {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL
-      ? `https://${process.env.NEXT_PUBLIC_BASE_URL}`
-      : "http://localhost:3000";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
   const res = await fetch(`${baseUrl}/api/posts`, { cache: "no-store" });
+
+
+ 
 
   if (!res.ok) {
     console.error("Failed to fetch posts. Status:", res.status);
