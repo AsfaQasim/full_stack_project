@@ -1,25 +1,17 @@
 export default async function PostsPage() {
-  const baseUrl =
-    process.env.NODE_ENV === "production"
-      ? `https://${process.env.NEXT_PUBLIC_BASE_URL}`
-      : "http://localhost:3000";
-
   let posts = [];
 
   try {
-    const res = await fetch(`${baseUrl}/api/posts`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL ? "" : ""}/api/posts`, {
       cache: "no-store",
     });
 
     if (!res.ok) {
       console.error("Failed to fetch posts. Status:", res.status);
-      return <p>Failed to load posts</p>;
+      return <p>Failed to load posts.</p>;
     }
 
-    const data = await res.json();
-    posts = Array.isArray(data) ? data : data.posts || [];
-
-    console.log("Posts fetched:", posts.length);
+    posts = await res.json();
   } catch (err) {
     console.error("Error fetching posts:", err);
     return <p>Something went wrong while fetching posts.</p>;
@@ -28,7 +20,6 @@ export default async function PostsPage() {
   return (
     <div className="p-6">
       <h1 className="text-3xl font-bold mb-4">All Posts</h1>
-
       {posts.length === 0 ? (
         <p>No posts found.</p>
       ) : (

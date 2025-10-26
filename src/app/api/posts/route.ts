@@ -8,7 +8,7 @@ export async function GET() {
     const posts = await Post.find();
     return NextResponse.json(posts, { status: 200 });
   } catch (error: any) {
-    console.error("❌ API Error in GET /api/posts:", error);
+    console.error("API Error in GET /api/posts:", error);
     return NextResponse.json(
       { error: "Failed to fetch posts", details: error.message },
       { status: 500 }
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
       { status: 201 }
     );
   } catch (error: any) {
-    console.error("❌ API Error in POST /api/posts:", error);
+    console.error("API Error in POST /api/posts:", error);
     return NextResponse.json(
       { error: "Failed to create post", details: error.message },
       { status: 500 }
