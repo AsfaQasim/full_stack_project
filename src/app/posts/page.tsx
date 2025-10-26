@@ -1,7 +1,9 @@
 export default async function PostsPage() {
   const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL ||
-    "https://full-stack-project-fawn-two.vercel.app";
+    process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000";
+
 
   let posts = [];
 
