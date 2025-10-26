@@ -1,16 +1,14 @@
 export default async function PostsPage() {
   const baseUrl =
-    process.env.VERCEL_URL && process.env.VERCEL_URL !== ""
-      ? `https://${process.env.VERCEL_URL}`
+    process.env.NODE_ENV === "production"
+      ? `https://${process.env.NEXT_PUBLIC_BASE_URL}`
       : "http://localhost:3000";
-
 
   let posts = [];
 
   try {
     const res = await fetch(`${baseUrl}/api/posts`, {
       cache: "no-store",
-      next: { revalidate: 0 },
     });
 
     if (!res.ok) {
