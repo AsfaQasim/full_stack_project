@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import connectDB from "../../../../lib/dbConnect";
 import Post from "../../../../models/Post";
+import image from "next/image";
 
 export async function GET() {
   try {
@@ -33,6 +34,7 @@ export async function POST(request: Request) {
       title: body.title,
       content: body.content,
       author: body.author || "Anonymous",
+       image: image || "",
     });
 
     await newPost.save();

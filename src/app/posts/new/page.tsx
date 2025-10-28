@@ -1,12 +1,12 @@
 "use client";
 import { useState } from "react";
 
-export default function NewPostPage() {
+export default function Page() { 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState("");
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const res = await fetch("/api/posts", {
@@ -42,7 +42,10 @@ export default function NewPostPage() {
         value={image}
         onChange={(e) => setImage(e.target.value)}
       />
-      <button className="bg-blue-600 text-white px-4 py-2 rounded" type="submit">
+      <button
+        className="bg-blue-600 text-white px-4 py-2 rounded"
+        type="submit"
+      >
         Create Post
       </button>
     </form>
