@@ -17,7 +17,7 @@ export async function GET() {
   }
 }
 
-// ✅ Add this POST handler
+
 export async function POST(request: Request) {
   try {
     await connectDB();

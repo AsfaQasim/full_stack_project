@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default async function PostsPage() {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || ''}/api/posts`, {
@@ -25,6 +27,7 @@ export default async function PostsPage() {
                 <p className="text-sm text-gray-400">
                   {new Date(post.createdAt).toLocaleString()}
                 </p>
+                <Image src={post.image} alt="" width={200} height={200}/>
               </div>
             ))}
           </div>
