@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import connectDB from "../../../../lib/dbConnect";
 import Post from "../../../../models/Post";
-import image from "next/image";
+
 
 export async function GET() {
   try {
@@ -21,9 +21,9 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     await connectDB();
-    const body = await request.json();
+    const { title, content, image } = await request.json();
 
-    if (!body.title || !body.content) {
+    if (!title || !content) {
       return NextResponse.json(
         { error: "Title and content are required" },
         { status: 400 }
@@ -31,10 +31,10 @@ export async function POST(request: Request) {
     }
 
     const newPost = new Post({
-      title: body.title,
-      content: body.content,
-      author: body.author || "Anonymous",
-       image: image || "",
+      title,
+      content,
+      author: "Anonymous", 
+      image,
     });
 
     await newPost.save();
