@@ -4,7 +4,7 @@ const postSchema = new Schema(
   {
     title: { type: String, required: true },
     content: { type: String, required: true },
-    image: { type: String }, 
+    imageUrl: { type: String }, 
     author: { type: String, default: "Anonymous" }, 
   },
   { timestamps: true }

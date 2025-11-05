@@ -32,7 +32,7 @@ export default function Page() {
       const postData = {
         title,
         content,
-        image: url,
+        imageUrl: url,
       };
   
       const res = await fetch("/api/posts", {

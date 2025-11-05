@@ -21,7 +21,7 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     await connectDB();
-    const { title, content, image } = await request.json();
+    const { title, content, imageUrl } = await request.json();
 
     if (!title || !content) {
       return NextResponse.json(
@@ -34,7 +34,7 @@ export async function POST(request: Request) {
       title,
       content,
       author: "Anonymous", 
-      image,
+      imageUrl,
     });
 
     await newPost.save();
