@@ -12,6 +12,7 @@ export default async function PostsPage() {
 
     const data = await res.json();
     const posts = Array.isArray(data) ? data : data.posts || [];
+    console.log("Posts data:", posts);
 
     return (
       <div className="p-6">
@@ -21,6 +22,7 @@ export default async function PostsPage() {
         ) : (
           <div className="grid gap-6">
             {posts.map((post: any) => (
+              
               <PostCard key={post._id} post={post} />
             ))}
           </div>
